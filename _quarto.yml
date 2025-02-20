@@ -10,12 +10,11 @@ website:
         text: Home
       - href: blog.qmd
         text: Blog
-      - icon: moon
-        toggle: light-dark
 
 
 format:
   html:
+    include-before-body: header.html
     theme:
       light: [litera, styles.scss]
       dark: [litera, styles-dark.scss]
@@ -23,6 +22,9 @@ format:
     mainfont: "Roboto"
     code-copy: true
     code-overflow: wrap
+
+resources:
+  - toggle-theme.js
 
 
 execute:
