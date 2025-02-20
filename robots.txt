@@ -1,1 +1,1 @@
-Sitemap: https://nipunbatra.github.io/quarto-template/sitemap.xml
+Sitemap: https://agarwalla-chirag.github.io/ES114-Exposition/sitemap.xml
