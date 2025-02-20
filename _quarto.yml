@@ -10,9 +10,6 @@ website:
         text: Home
       - href: blog.qmd
         text: Blog
-      - icon: moon
-        href: "#"
-        onclick: "document.getElementById('theme-toggle').click();"
 
 format:
   html:
