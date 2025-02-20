@@ -22,9 +22,5 @@ format:
     code-copy: true
     code-overflow: wrap
 
-resources:
-  - toggle-theme.js
-
-
 execute:
   freeze: auto
