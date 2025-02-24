@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.41">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Chirag Agarwalla, Niraj Kumar, Nishanth P Hegde">
+<meta name="dcterms.date" content="2025-02-25">
+
+<title>Sympy Stats – Quarto Template</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-49927ad6ac989989b068a441603fbd97.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7cfa380d139a4d61a924487b0af32b39.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Quarto Template</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><strong>Introduction</strong></a></li>
+  <li><a href="#installation-and-setup" id="toc-installation-and-setup" class="nav-link" data-scroll-target="#installation-and-setup"><strong>Installation and Setup</strong></a></li>
+  <li><a href="#key-features-and-explanations-with-code-examples" id="toc-key-features-and-explanations-with-code-examples" class="nav-link" data-scroll-target="#key-features-and-explanations-with-code-examples"><strong>Key Features and Explanations with Code Examples</strong></a></li>
+  <li><a href="#defining-random-variables-and-probablity-computation" id="toc-defining-random-variables-and-probablity-computation" class="nav-link" data-scroll-target="#defining-random-variables-and-probablity-computation">Defining Random Variables and Probablity Computation</a></li>
+  <li><a href="#expectation-and-variance" id="toc-expectation-and-variance" class="nav-link" data-scroll-target="#expectation-and-variance">Expectation and Variance</a></li>
+  <li><a href="#moment" id="toc-moment" class="nav-link" data-scroll-target="#moment">Moment</a></li>
+  <li><a href="#entropy" id="toc-entropy" class="nav-link" data-scroll-target="#entropy">Entropy</a></li>
+  <li><a href="#density" id="toc-density" class="nav-link" data-scroll-target="#density">Density</a></li>
+  <li><a href="#cumulative-distribution-function" id="toc-cumulative-distribution-function" class="nav-link" data-scroll-target="#cumulative-distribution-function">Cumulative Distribution Function</a></li>
+  <li><a href="#quantile" id="toc-quantile" class="nav-link" data-scroll-target="#quantile">Quantile</a></li>
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability">Conditional Probability</a></li>
+  <li><a href="#independence-and-dependence-of-random-variables" id="toc-independence-and-dependence-of-random-variables" class="nav-link" data-scroll-target="#independence-and-dependence-of-random-variables">Independence and Dependence of Random Variables</a></li>
+  <li><a href="#covariance-and-correlation" id="toc-covariance-and-correlation" class="nav-link" data-scroll-target="#covariance-and-correlation">Covariance and Correlation</a></li>
+  <li><a href="#transformations-of-random-variables" id="toc-transformations-of-random-variables" class="nav-link" data-scroll-target="#transformations-of-random-variables">Transformations of Random Variables</a></li>
+  <li><a href="#sampling-from-distributions" id="toc-sampling-from-distributions" class="nav-link" data-scroll-target="#sampling-from-distributions">Sampling from Distributions</a></li>
+  <li><a href="#visualization-of-distributions" id="toc-visualization-of-distributions" class="nav-link" data-scroll-target="#visualization-of-distributions">Visualization of Distributions</a></li>
+  <li><a href="#use-cases" id="toc-use-cases" class="nav-link" data-scroll-target="#use-cases"><strong>Use Cases</strong></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
+  <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><strong>References &amp; Further Reading</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Sympy Stats</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">ML</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chirag Agarwalla, Niraj Kumar, Nishanth P Hegde </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1><strong>Introduction</strong></h1>
+<p>SymPy Stats is a powerful module in the SymPy library that provides symbolic tools for probability and statistics in Python. It enables the algebraic manipulation of random variables, making it perfect for probabilistic modeling and statistical analysis.</p>
+<p>In this blog, we’ll explore the key features of SymPy Stats, including how to define random variables, compute probabilities, and analyze statistical properties such as expectation, variance, and more. Additionally, we’ll dive into important concepts like conditional probability, independence, and other advanced topics in symbolic statistics.</p>
+</section>
+<section id="installation-and-setup" class="level1">
+<h1><strong>Installation and Setup</strong></h1>
+<p>To use SymPy Stats, ensure that SymPy is installed. It can be installed using:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install sympy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, import the necessary modules:</p>
+<div id="cell-4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy.stats <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Eq, simplify</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="key-features-and-explanations-with-code-examples" class="level1">
+<h1><strong>Key Features and Explanations with Code Examples</strong></h1>
+<p>SymPy Stats provides functionalities for:</p>
+</section>
+<section id="defining-random-variables-and-probablity-computation" class="level1">
+<h1>Defining Random Variables and Probablity Computation</h1>
+<p><strong>Standard Normal Distribution</strong></p>
+<p>We define a random variable ‘Norm’ that follows a normal distribution with a mean (𝜇) = 0 and standard deviation σ=1, which makes it a standard normal variable.</p>
+<p>Then, P(Norm&gt;0) calculates the probability that ‘Norm’ is greater than 0. This is the area under the normal curve to the right of 0.</p>
+<div id="cell-8" class="cell" data-outputid="47ed09f7-0164-4c23-9919-a041e02627ed" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Norm <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probablity of normal distribution is:"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>P(Norm <span class="op">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The probablity of normal distribution is:</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<p><span class="math inline">\(\displaystyle \frac{1}{2}\)</span></p>
+</div>
+</div>
+<p><strong>Exponential Distribution</strong></p>
+<p>We define a random variable ‘Exp’ that follows an exponential distribution with a rate parameter λ=1, which makes it an exponential variable with mean μ=1.</p>
+<p>For a continuous random variable, calculating P(Exp=1) gives the probability that ‘Exp’ is exactly equal to 1. However, since the exponential distribution is continuous, the probability of ‘Exp’ being exactly 1 is 0.</p>
+<p>On the other hand, P(0&lt;Exp&lt;1) calculates the probability that ‘Exp’ lies between 0 and 1. This is the area under the curve between 0 and 1.</p>
+<div id="cell-10" class="cell" data-outputid="d57bf66f-e9f8-4bf5-b882-7480bf232d06" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Exp <span class="op">=</span> Exponential(<span class="st">'Exp'</span>, <span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability Exp = 1 is:"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>P(Eq(Exp, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The probability Exp = 1 is:</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<p><span class="math inline">\(\displaystyle 0\)</span></p>
+</div>
+</div>
+<div id="cell-11" class="cell" data-outputid="90ce0646-4178-40fe-c88d-abd3c947c7df" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that 0 &lt; Exp &lt; 1 is:"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>P((Exp <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">&amp;</span> (Exp <span class="op">&lt;</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The probability that 0 &lt; Exp &lt; 1 is:</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
+<p><span class="math inline">\(\displaystyle 1 - e^{-1}\)</span></p>
+</div>
+</div>
+<p><strong>Uniform Distribution</strong></p>
+<p>We define a random variable ‘Uni’ that follows a uniform distribution between 0 and 10, meaning it has equal probability across this range.</p>
+<p>Then, P(Uni&lt;5) calculates the probability that ‘Uni’ is less than 5. This probability is proportional to the length of the interval [0,5] relative to the total range [0,10], representing the area under the uniform curve from 0 to 5.</p>
+<div id="cell-13" class="cell" data-outputid="a59e2e65-8df5-49dd-a185-b70c636bd576" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Uni <span class="op">=</span> Uniform(<span class="st">'Uni'</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that Uni &lt; 5 is:"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>P(Uni <span class="op">&lt;</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The probability that Uni &lt; 5 is:</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<p><span class="math inline">\(\displaystyle \frac{1}{2}\)</span></p>
+</div>
+</div>
+<p><strong>Bernoulli Distribution</strong></p>
+<p>We define a random variable ‘Bern’ that follows a Bernoulli distribution with probability p=0.5. It has two outcomes: 1 (success) with probability ‘𝑝’, and 0 (failure) with probability ‘1−p’.</p>
+<p>Then, 𝑃(Eq(Bern,1)) calculates the probability that ‘Bern’ equals 1. This represents the probability of success in a Bernoulli trial.</p>
+<div id="cell-15" class="cell" data-outputid="2c7059ae-567f-41cd-ecbe-4496d8b2fa0c" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Bern <span class="op">=</span> Bernoulli(<span class="st">'Bern'</span>, <span class="fl">0.5</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that Bern = 1 is:"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>P(Eq(Bern, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The probability that Bern = 1 is:</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<p><span class="math inline">\(\displaystyle 0.5\)</span></p>
+</div>
+</div>
+<p><strong>Binomial Distribution</strong></p>
+<p>We define a random variable ‘Bin’ that follows a Binomial distribution with parameters n=10 and p=0.5, meaning there are 10 independent Bernoulli trials, each with a probability p=0.5 of success.</p>
+<p>Then, P(Eq(Bin,5)) calculates the probability that ‘Bin’ equals 5, which represents the probability of having exactly 5 successes out of the 10 trials and is computed using the Binomial probability mass function.</p>
+<div id="cell-17" class="cell" data-outputid="68f94032-3036-424c-bc14-bf56d8e1b7c2" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Bin <span class="op">=</span> Binomial(<span class="st">'Bin'</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that Bin = 5 is:"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>P(Eq(Bin, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The probability that Bin = 5 is:</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
+<p><span class="math inline">\(\displaystyle 0.24609375\)</span></p>
+</div>
+</div>
+<p><strong>Poisson Distribution</strong></p>
+<p>We define a random variable ‘Poiss’ that follows a Poisson distribution with a mean λ=3.</p>
+<p>Then, P(Eq(Poiss,2)) calculates the probability that ’Poiss’equals 2, which represents the probability of exactly 2 events occurring in the given interval and is computed using the Poisson probability mass function.</p>
+<p>This gives the likelihood of observing exactly 2 events when the average number of events is 3.</p>
+<div id="cell-19" class="cell" data-outputid="e8474360-ebd6-4237-df07-0b6244bfc8cb" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Poiss <span class="op">=</span> Poisson(<span class="st">'Poiss'</span>, <span class="dv">3</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that Poiss = 2 is:"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>P(Eq(Poiss, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The probability that Poiss = 2 is:</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
+<p><span class="math inline">\(\displaystyle \frac{9}{2 e^{3}}\)</span></p>
+</div>
+</div>
+</section>
+<section id="expectation-and-variance" class="level1">
+<h1>Expectation and Variance</h1>
+<ul>
+<li><p><strong>Expectation (E)</strong>: The expectation, or mean, of a random variable represents its average value over many trials. It gives the central tendency of the distribution.</p></li>
+<li><p><strong>Variance</strong>: Variance measures how much the values of a random variable deviate from the mean. A higher variance indicates a wider spread, while a lower variance means the values are closer to the mean.</p></li>
+</ul>
+<p>For a normal distribution, the expectation is the mean (μ), and the variance is the square of the standard deviation (σ²).</p>
+<div id="cell-22" class="cell" data-outputid="f73470af-5304-4d51-9ac4-f5f1b11f4bf7" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of normal distribution is:"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>E(Norm), variance(Norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The expectation and variance of normal distribution is:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>(0, 1)</code></pre>
+</div>
+</div>
+<div id="cell-23" class="cell" data-outputid="d1ad970a-4e0c-4db0-9a33-d6b0bc319eb0" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of exponential distribution is:"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>E(Exp), variance(Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The expectation and variance of exponential distribution is:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>(1, 1)</code></pre>
+</div>
+</div>
+<div id="cell-24" class="cell" data-outputid="ae8560ff-1e6b-4cef-c8c5-b4e9e641ed5c" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of uniform distribution is:"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>E(Uni) ,variance(Uni)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The expectation and variance of uniform distribution is:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>(5, 25/3)</code></pre>
+</div>
+</div>
+<div id="cell-25" class="cell" data-outputid="f0a7e022-cdf5-432a-dca6-554cb34f457d" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of Bernoulli distribution is:"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>E(Bern), variance(Bern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The expectation and variance of Bernoulli distribution is:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>(0.500000000000000, 0.250000000000000)</code></pre>
+</div>
+</div>
+<div id="cell-26" class="cell" data-outputid="96e5b2fd-bf58-412b-fea4-7250dce28639" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of Binomial distribution is:"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>E(Bin), variance(Bin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The expectation and variance of Binomial distribution is:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>(5.00000000000000, 2.50000000000000)</code></pre>
+</div>
+</div>
+<div id="cell-27" class="cell" data-outputid="3689aa84-dbc3-4b02-8064-4b1a1ced626a" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of Poisson distribution is:"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>E(Poiss)  , variance(Poiss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The expectation and variance of Poisson distribution is:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>(3, 3)</code></pre>
+</div>
+</div>
+</section>
+<section id="moment" class="level1">
+<h1>Moment</h1>
+<p>Moments are statistical measures that help describe the shape and properties of a probability distribution.</p>
+<p>Raw Moments: The nth moment about the origin is given by E(X ^ n ) and helps understand the overall magnitude of the values.</p>
+<p>Central Moments: Moments calculated about the mean describe variability and shape characteristics of the distribution.</p>
+<p>First Moment (Expectation): Represents the average or central value of the distribution.</p>
+<p>Second Moment (Variance): Measures the spread of the distribution around the mean.</p>
+<p>Third Moment (Skewness): Describes the asymmetry of the distribution—whether it leans more to the left or right.</p>
+<p>Fourth Moment (Kurtosis): Indicates the heaviness of the tails compared to a normal distribution, helping assess the likelihood of extreme values.</p>
+<p>Moments offer a more detailed understanding of a distribution’s shape beyond just mean and variance.</p>
+<div id="cell-30" class="cell" data-outputid="93adafe9-9d20-417a-c151-7810056a6b2a" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>moment(Norm, <span class="dv">3</span>)  <span class="co"># Third moment of Normal Distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="16">
+<p><span class="math inline">\(\displaystyle 0\)</span></p>
+</div>
+</div>
+<div id="cell-31" class="cell" data-outputid="8832ec6c-5915-4958-a80c-cc35725ccca9" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>moment(Exp, <span class="dv">4</span>)  <span class="co"># Fourth moment of Exponential Distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="17">
+<p><span class="math inline">\(\displaystyle 24\)</span></p>
+</div>
+</div>
+<div id="cell-32" class="cell" data-outputid="d20027a9-b71f-4e51-b7da-50f9463a5332" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>moment(Poiss, <span class="dv">2</span>)  <span class="co"># Second moment of Poisson distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="18">
+<p><span class="math inline">\(\displaystyle 12\)</span></p>
+</div>
+</div>
+<div id="cell-33" class="cell" data-outputid="68b95e25-f836-44db-921f-db94b029bb4c" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>skewness(Exp)  <span class="co"># Skewness of Exponential Distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="19">
+<p><span class="math inline">\(\displaystyle 2\)</span></p>
+</div>
+</div>
+<div id="cell-34" class="cell" data-outputid="251adfd0-8ddd-4bcf-d573-707d74ca3739" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>kurtosis(Exp)  <span class="co"># Kurtosis of Exponential Distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="20">
+<p><span class="math inline">\(\displaystyle 9\)</span></p>
+</div>
+</div>
+</section>
+<section id="entropy" class="level1">
+<h1>Entropy</h1>
+<p>Entropy is a measure of uncertainty or randomness in a probability distribution. In this context, it quantifies the uncertainty associated with the standard normal distribution represented by the variable Norm.</p>
+<p>H(X): This line calls the function H() from sympy.stats, which is used to calculate the entropy of a random variable.</p>
+<div id="cell-37" class="cell" data-outputid="322f39e8-ea35-40bc-a298-615a21b0ffca" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>H(Norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="21">
+<p><span class="math inline">\(\displaystyle \frac{\log{\left(2 \right)}}{2} + \frac{1}{2} + \frac{\log{\left(\pi \right)}}{2}\)</span></p>
+</div>
+</div>
+<p>This line of code calculates the entropy of an exponential distribution.</p>
+<div id="cell-39" class="cell" data-outputid="d12bc2e0-27a3-4cfd-aa2e-f0b595446d48" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>H(Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="22">
+<p><span class="math inline">\(\displaystyle 1\)</span></p>
+</div>
+</div>
+<p>This line of code calculates the entropy of a Bernoulli random variable.</p>
+<div id="cell-41" class="cell" data-outputid="cafedb7c-5519-443a-9d66-cba0d5a0ec23" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>H(Bern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="23">
+<p><span class="math inline">\(\displaystyle 0.693147180559945\)</span></p>
+</div>
+</div>
+</section>
+<section id="density" class="level1">
+<h1>Density</h1>
+<p>This is a function from sympy.stats that is used to obtain the probability density function (PDF) of a random variable. The PDF describes the likelihood of a random variable taking on a specific value. this line of code is asking for the mathematical formula that describes the shape of the standard normal distribution</p>
+<div id="cell-44" class="cell" data-outputid="0703d8d8-09ed-4d31-d2c4-42caa7346aea" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>density(Norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="24">
+<p><span class="math inline">\(\displaystyle \operatorname{NormalDistribution}\left(0, 1\right)\)</span></p>
+</div>
+</div>
+<div id="cell-45" class="cell" data-outputid="e7834862-4d40-4bb1-a5ee-d33cdbba14d1" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>density(Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="25">
+<p><span class="math inline">\(\displaystyle \operatorname{ExponentialDistribution}\left(1\right)\)</span></p>
+</div>
+</div>
+<div id="cell-46" class="cell" data-outputid="cf9422a8-7c1c-4e49-f315-390e62902d2f" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>density(Poiss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="26">
+<p><span class="math inline">\(\displaystyle \operatorname{PoissonDistribution}\left(3\right)\)</span></p>
+</div>
+</div>
+</section>
+<section id="cumulative-distribution-function" class="level1">
+<h1>Cumulative Distribution Function</h1>
+<p>The cdf(Exp) line is calculating this probability for the exponential distribution represented by Exp. The exponential distribution is often used to model the time until an event occurs.</p>
+<div id="cell-49" class="cell" data-outputid="856bb666-22aa-4799-c8e2-fdbf34be7128" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>cdf(Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="27">
+<p><span class="math inline">\(\displaystyle \left( z \mapsto \begin{cases} 1 - e^{- z} &amp; \text{for}\: z \geq 0 \\0 &amp; \text{otherwise} \end{cases} \right)\)</span></p>
+</div>
+</div>
+<p>The cdf of Bernoulli Distribution can be shown as:</p>
+<div id="cell-51" class="cell" data-outputid="378f1323-92ea-4d7c-91b5-c4befc462712" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>cdf(Bern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>{0: 0.500000000000000, 1: 1.00000000000000}</code></pre>
+</div>
+</div>
+</section>
+<section id="quantile" class="level1">
+<h1>Quantile</h1>
+<p>The code is asking for the value (on the x-axis of the standard normal distribution) below which 95% of the data falls. This is also known as the 95th percentile or 0.95 quantile. Imagine the bell curve of the standard normal distribution – this code finds the point where 95% of the area under the curve is to the left of that point</p>
+<div id="cell-54" class="cell" data-outputid="5f376034-a9d2-4eff-ce39-868caa71b145" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>quantile(Norm, <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="29">
+<p><span class="math inline">\(\displaystyle \left( p \mapsto \sqrt{2} \operatorname{erfinv}{\left(2 p - 1 \right)} \right)\)</span></p>
+</div>
+</div>
+<div id="cell-55" class="cell" data-outputid="6d3b325a-97a6-4e1c-9faf-5f8484596fca" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>quantile(Exp, <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="30">
+<p><span class="math inline">\(\displaystyle \left( p \mapsto - \log{\left(1 - p \right)} \right)\)</span></p>
+</div>
+</div>
+</section>
+<section id="conditional-probability" class="level1">
+<h1>Conditional Probability</h1>
+<p>This code snippet calculates the probability that a random variable, represented by Norm, falls within a specific range given that it’s part of a standard normal distribution.</p>
+<div id="cell-58" class="cell" data-outputid="c65b7b03-4900-42fa-a712-351ae1d8f3eb" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>P(Norm <span class="op">&gt;</span> <span class="dv">0</span>, Norm <span class="op">&lt;</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="31">
+<p><span class="math inline">\(\displaystyle - \frac{\sqrt{2} \pi e^{2} \operatorname{erf}{\left(\sqrt{2} \right)}}{- \sqrt{2} \pi e^{2} - \sqrt{2} \pi e^{2} \operatorname{erf}{\left(\sqrt{2} \right)}}\)</span></p>
+</div>
+</div>
+<p>This line calculates the probability that the random variable Exp (which was previously defined as an Exponential distribution) falls between the values of 2 and 5.</p>
+<div id="cell-60" class="cell" data-outputid="efed2f98-e7f0-49ea-b2c5-7775abe7f177" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>P(Exp <span class="op">&gt;</span> <span class="dv">2</span>, Exp <span class="op">&lt;</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="32">
+<p><span class="math inline">\(\displaystyle - \frac{1}{-1 + e^{5}} + \frac{e^{3}}{-1 + e^{5}}\)</span></p>
+</div>
+</div>
+<p>This code calculates the probability that the random variable Bin is greater than 3 and less than 8.</p>
+<div id="cell-62" class="cell" data-outputid="af6f80d3-ef4a-468a-e6ff-ddad124e3528" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>P(Bin <span class="op">&gt;</span> <span class="dv">3</span>, Bin <span class="op">&lt;</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="33">
+<p><span class="math inline">\(\displaystyle 0.818181818181818\)</span></p>
+</div>
+</div>
+<p>This code calculates the probability that the random variable Poiss is greater than 1 and less than 4.</p>
+<div id="cell-64" class="cell" data-outputid="09d0ff13-ae8b-4a1a-b441-b13b3db48e24" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>P(Poiss <span class="op">&gt;</span> <span class="dv">1</span>, Poiss <span class="op">&lt;</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="34">
+<p><span class="math inline">\(\displaystyle \frac{9}{13}\)</span></p>
+</div>
+</div>
+<p>This code aims to find the likelihood of these two events occurring simultaneously:</p>
+<p>A randomly selected value from a standard normal distribution being greater than 0. A randomly selected value from an exponential distribution being greater than 1.</p>
+<div id="cell-66" class="cell" data-outputid="810da09f-b3be-4c99-fa6f-2f5221104f36" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>P(Norm <span class="op">&gt;</span> <span class="dv">0</span>, Exp <span class="op">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="35">
+<p><span class="math inline">\(\displaystyle \frac{1}{2}\)</span></p>
+</div>
+</div>
+</section>
+<section id="independence-and-dependence-of-random-variables" class="level1">
+<h1>Independence and Dependence of Random Variables</h1>
+<p>If the function returns True, it indicates that the variables are considered independent, meaning their outcomes don’t affect each other. If it returns False, it suggests there might be some dependence or relationship between the variables.</p>
+<div id="cell-69" class="cell" data-outputid="8b051ea3-8e6a-483e-9376-018dd2df7ee6" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>independent(Norm, Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="cell-70" class="cell" data-outputid="47fc37c4-53ba-46dd-9797-30507f0038e6" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>independent(Bern, Bin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="cell-71" class="cell" data-outputid="24676ae0-5502-4c25-97d0-fea6e62a09e7" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>dependent(Bern, Poiss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>False</code></pre>
+</div>
+</div>
+</section>
+<section id="covariance-and-correlation" class="level1">
+<h1>Covariance and Correlation</h1>
+<p><strong>Covariance</strong></p>
+<p>Covariance measures how two random variables change together. It is calculated as:</p>
+<p>Cov(𝑋,𝑌)=𝐸[(𝑋−𝐸[𝑋])(𝑌−𝐸[𝑌])]</p>
+<div id="cell-75" class="cell" data-outputid="d4f17b9b-af02-4db1-8e60-19b91f1e4057" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>Norm_1 <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)  <span class="co"># Normal distribution with mean=0, std=1</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>Norm_2 <span class="op">=</span> Normal(<span class="st">'Exp'</span>, <span class="dv">0</span>, <span class="dv">2</span>)  <span class="co"># Normal distribution with mean=0, std=2</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> covariance(Norm_1, Norm_2)</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Covariance:"</span>, cov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Covariance: 0</code></pre>
+</div>
+</div>
+<p><strong>Correlation</strong></p>
+<p>Correlation normalizes covariance by the standard deviations of the variables, giving a value between -1 and 1:</p>
+<p>Corr(𝑋,𝑌)=Cov(𝑋,𝑌)/(𝜎𝑋𝜎𝑌)</p>
+<div id="cell-78" class="cell" data-outputid="b5bf15b4-6f6c-4af6-d0d5-a29dd84d411a" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>Norm_1 <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)  <span class="co"># Normal distribution with mean=0, std=1</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>Norm_2 <span class="op">=</span> Normal(<span class="st">'Exp'</span>, <span class="dv">0</span>, <span class="dv">2</span>)  <span class="co"># Normal distribution with mean=0, std=2</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> correlation(Norm_1, Norm_2)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation:"</span>, corr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Correlation: 0</code></pre>
+</div>
+</div>
+<p><strong>Note:</strong> 1. If X and Y are independent, covariance(X, Y) will return 0. 2. correlation(X, Y) normalizes the covariance to get a value between -1 and 1.</p>
+<p><strong>Covariance between Binomial and Poisson</strong></p>
+<div id="cell-81" class="cell" data-outputid="041179ca-df3f-405b-c699-22e3d7a29ae6" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>Bin <span class="op">=</span> Binomial(<span class="st">'Bin'</span>, n<span class="op">=</span><span class="dv">10</span>, p<span class="op">=</span><span class="fl">0.5</span>)  <span class="co"># Binomial(n=10, p=0.5)</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>Poiss <span class="op">=</span> Poisson(<span class="st">'Poiss'</span>, <span class="dv">3</span>)         <span class="co"># Poisson(λ=3)</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> covariance(Bin, Poiss)</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Covariance:"</span>, cov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Covariance: 0</code></pre>
+</div>
+</div>
+<p><strong>Note:</strong> 1. If Bin and Poiss are independent, their covariance is 0. 2. By default, SymPy assumes independence, so covariance(Bin, Poiss) returns 0.</p>
+</section>
+<section id="transformations-of-random-variables" class="level1">
+<h1>Transformations of Random Variables</h1>
+<p>If X is a random variable and Y = g(X) is a transformation of X, then: * The new distribution of Y can be derived symbolically. * SymPy can compute the <strong>expectation, variance, and density function</strong> of Y.</p>
+<p>Example: Linear Transformation Y = aX + b</p>
+<p>If X ~ N(0,1) (Standard Normal), and we define Y=2X+3, then:</p>
+<p>E[Y] = E[2X+3] = 2 E[X] + 3</p>
+<p>Var(Y) = Var(2X+3) = 2*2 Var(X) = 4</p>
+<div id="cell-85" class="cell" data-outputid="90cabefb-38e6-4e22-874a-6c378970a073" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Norm <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>Transformed_var <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> Norm <span class="op">+</span> <span class="dv">3</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>Expect <span class="op">=</span> Expectation(Transformed_var).doit()</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>Var <span class="op">=</span> variance(Transformed_var).doit()</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>pdf_transformed_var <span class="op">=</span> density(Transformed_var)(symbols(<span class="st">'y'</span>))</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"E[Transformed_var]:"</span>, Expect)</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Var[Transformed_var]:"</span>, Var)</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Density Function:"</span>)</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>simplify(pdf_transformed_var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>E[Transformed_var]: 3
+Var[Transformed_var]: 4
+Density Function:</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="42">
+<p><span class="math inline">\(\displaystyle \frac{\sqrt{2} e^{- \frac{\left(y - 3\right)^{2}}{8}}}{4 \sqrt{\pi}}\)</span></p>
+</div>
+</div>
+</section>
+<section id="sampling-from-distributions" class="level1">
+<h1>Sampling from Distributions</h1>
+<p><strong>Significance of Sampling from a Distribution</strong></p>
+<p>Sampling from a probability distribution is important because it allows us to simulate, estimate, and analyze real-world data where randomness plays a role.</p>
+<p>For Example:</p>
+<p><strong>Understanding Random Behavior</strong> 1. When you sample from a Normal(0,1) distribution, for example, you get values mostly centered around 0 with some variation. 2. If you sample from a Poisson(λ=3), the numbers tend to be small integers around 3. 3. This helps in understanding how real-world processes behave (e.g., height distribution, number of customer arrivals per minute).</p>
+<p><strong>Checking Theoretical vs.&nbsp;Empirical Distributions</strong></p>
+<p>If we sample a large number of values, we can plot a histogram and compare it with the expected probability distribution.</p>
+<p>Example: Sampling 1000 values from N(0,1) should give a bell-shaped curve.</p>
+<p><strong>Sampling from a Standard Normal Distribution</strong></p>
+<div id="cell-89" class="cell" data-outputid="59fed4b9-30c7-46f6-8f3a-fcd80e811af3" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Normal distribution X ~ N(0,1)</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>Norm <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Single Sample:"</span>, <span class="bu">round</span>(sample(Norm),<span class="dv">2</span>))</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample multiple values (Ex: 20 values)</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [<span class="bu">round</span>(sample(Norm),<span class="dv">2</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>)]</span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Multiple Samples:"</span>, samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Single Sample: -0.72
+Multiple Samples: [np.float64(1.07), np.float64(0.26), np.float64(-0.16), np.float64(-0.05), np.float64(-0.22), np.float64(1.27), np.float64(-0.6), np.float64(-1.35), np.float64(-0.5), np.float64(-1.02), np.float64(-0.08), np.float64(-1.2), np.float64(-0.72), np.float64(-0.2), np.float64(0.27), np.float64(0.01), np.float64(0.33), np.float64(-1.35), np.float64(-0.22), np.float64(1.21)]</code></pre>
+</div>
+</div>
+<p><strong>Sampling from a Binomial Distribution</strong></p>
+<div id="cell-91" class="cell" data-outputid="5164cc69-4f95-4ce8-ff6b-352d461c5f09" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># X ~ Bin(10, 0.5)</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span> <span class="op">=</span> Binomial(<span class="st">'Bin'</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [sample(<span class="bu">bin</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>)]</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Binomial Samples:"</span>, samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Binomial Samples: [np.int64(4), np.int64(5), np.int64(5), np.int64(4), np.int64(5), np.int64(4), np.int64(5), np.int64(3), np.int64(2), np.int64(7), np.int64(8), np.int64(5), np.int64(5), np.int64(4), np.int64(7), np.int64(2), np.int64(6), np.int64(3), np.int64(7), np.int64(6)]</code></pre>
+</div>
+</div>
+<p><strong>Sampling from a Poisson Distribution</strong></p>
+<div id="cell-93" class="cell" data-outputid="ac2ed500-dacb-464b-c58c-1702c860f3d4" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Poisson distribution X ~ Poisson(3)</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>Poiss <span class="op">=</span> Poisson(<span class="st">'Poiss'</span>, <span class="dv">3</span>)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [sample(Poiss) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>)]</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Poisson Samples:"</span>, samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Poisson Samples: [np.int64(1), np.int64(4), np.int64(2), np.int64(2), np.int64(2), np.int64(2), np.int64(4), np.int64(3), np.int64(1), np.int64(3), np.int64(3), np.int64(0), np.int64(2), np.int64(3), np.int64(2), np.int64(3), np.int64(4), np.int64(2), np.int64(2), np.int64(6)]</code></pre>
+</div>
+</div>
+</section>
+<section id="visualization-of-distributions" class="level1">
+<h1>Visualization of Distributions</h1>
+<p><strong>Normal Distribution (N(0,1))</strong></p>
+<div id="cell-96" class="cell" data-outputid="b8b8552d-7a5c-45f6-904c-c172bc86c33c" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Normal distribution N(0,1)</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>X_normal <span class="op">=</span> Normal(<span class="st">'X'</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>pdf_normal <span class="op">=</span> density(X_normal)(x)</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the PDF of Normal Distribution</span></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>x_vals <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1000</span>)</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>y_vals_normal <span class="op">=</span> [pdf_normal.subs(x, val) <span class="cf">for</span> val <span class="kw">in</span> x_vals]</span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, y_vals_normal, label<span class="op">=</span><span class="st">'Normal N(0,1)'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Normal Distribution N(0,1)'</span>)</span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Value'</span>)</span>
+<span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
+<span id="cb76-15"><a href="#cb76-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb76-16"><a href="#cb76-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb76-17"><a href="#cb76-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Sympy_Stats_Module_files/figure-html/cell-46-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>This is the Probability Density Function (PDF) for a Normal distribution with mean 0 and standard deviation 1.</p></li>
+<li><p>You can see a bell-shaped curve, which is the characteristic of the normal distribution.</p></li>
+</ul>
+<p><strong>Bernoulli Distribution (Bernoulli(0.7))</strong></p>
+<div id="cell-99" class="cell" data-outputid="5d922ffe-a0d3-4e56-9739-41e305caa411" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bernoulli distribution with p = 0.7</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>X_bernoulli <span class="op">=</span> Bernoulli(<span class="st">'X'</span>, <span class="fl">0.7</span>)</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>pmf_bernoulli <span class="op">=</span> [density(X_bernoulli)(val).subs(x, val) <span class="cf">for</span> val <span class="kw">in</span> [<span class="dv">0</span>, <span class="dv">1</span>]]</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>plt.bar([<span class="dv">0</span>, <span class="dv">1</span>], pmf_bernoulli, label<span class="op">=</span><span class="st">'Bernoulli p=0.7'</span>, color<span class="op">=</span><span class="st">'orange'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Bernoulli Distribution p=0.7'</span>)</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Outcome'</span>)</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Probability'</span>)</span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>plt.xticks([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="st">'Failure (0)'</span>, <span class="st">'Success (1)'</span>])</span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Sympy_Stats_Module_files/figure-html/cell-47-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Binomial Distribution (Binomial(10, 0.5))</strong></p>
+<div id="cell-101" class="cell" data-outputid="b9bd22c7-7f24-4386-e46f-70a3ca1abf33" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Binomial distribution Binomial(10, 0.5)</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>X_binomial <span class="op">=</span> Binomial(<span class="st">'X'</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>x_binomial <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">11</span>)</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>pmf_binomial <span class="op">=</span> [density(X_binomial)(val).subs(x, val) <span class="cf">for</span> val <span class="kw">in</span> x_binomial]</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>plt.bar(x_binomial, pmf_binomial, label<span class="op">=</span><span class="st">'Binomial Bin(10, 0.5)'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Binomial Distribution Bin(10, 0.5)'</span>)</span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Successes'</span>)</span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Probability'</span>)</span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Sympy_Stats_Module_files/figure-html/cell-48-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Poisson Distribution (Poisson(3))</strong></p>
+<div id="cell-103" class="cell" data-outputid="c178c524-c8af-4cf4-e9a0-dc4feefaf3c0">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>X_poisson <span class="op">=</span> Poisson(<span class="st">'X'</span>, <span class="dv">3</span>)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>x_poisson <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">15</span>)</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>pmf_poisson <span class="op">=</span> [density(X_poisson)(val).subs(x, val) <span class="cf">for</span> val <span class="kw">in</span> x_poisson]</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>plt.bar(x_poisson, pmf_poisson, label<span class="op">=</span><span class="st">'Poisson λ=3'</span>, color<span class="op">=</span><span class="st">'purple'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Poisson Distribution λ=3'</span>)</span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Events'</span>)</span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Probability'</span>)</span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Sympy_Stats_Module_files/figure-html/cell-49-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="use-cases" class="level1">
+<h1><strong>Use Cases</strong></h1>
+<p><strong>Practical Applications</strong></p>
+<p>Sympy(Python library for symbolic mathematics) allows exact computations unlike numerical methods that approximate values and it is used in solving some real world problems. Here are some of the practical usecases:-</p>
+<ol type="1">
+<li>Cryptography &amp; Cybersecurity<br>
+</li>
+</ol>
+<ul>
+<li>Handling modular arithmetic</li>
+<li>Implementing RSA-related computations</li>
+</ul>
+<ol start="2" type="1">
+<li>Medicine &amp; Drug Discovery</li>
+</ol>
+<ul>
+<li>Helps in predicting how fast a disease spreads</li>
+</ul>
+<ol start="3" type="1">
+<li>Finance &amp; Economics</li>
+</ol>
+<ul>
+<li>Helps find the best investment allocation mathematically!</li>
+</ul>
+<ol start="4" type="1">
+<li>Calculus (Differentiation &amp; Integration)</li>
+</ol>
+<ul>
+<li>Evaluating limits</li>
+<li>Computing derivatives and integrals</li>
+<li>Handling series expansions</li>
+</ul>
+<ol start="5" type="1">
+<li>Physics and Mechanics</li>
+</ol>
+<ul>
+<li>Symbolic solutions for equations of motion</li>
+<li>Computing work and energy expressions</li>
+</ul>
+<ol start="6" type="1">
+<li>Control Systems</li>
+</ol>
+<ul>
+<li>Laplace transforms</li>
+<li>Transfer functions</li>
+</ul>
+</section>
+<section id="conclusion" class="level1">
+<h1><strong>Conclusion</strong></h1>
+<p>SymPy Stats is a powerful tool for symbolic probability computations, making it valuable for theoretical and educational purposes. Unlike numerical approaches, it enables exact probability manipulations, making it particularly useful in research, teaching, and analytical problem-solving.</p>
+<p>With its ability to define and manipulate random variables algebraically, compute probabilities, expectations, variances, and even perform conditional probability analysis, SymPy Stats stands out as a unique library. It provides a deeper understanding of probability theory by allowing symbolic derivations instead of just numerical approximations.</p>
+<p>Additionally, integrating SymPy Stats with visualization tools like Matplotlib enhances comprehension by allowing users to visualize probability distributions and their properties effectively. Whether for academic study, probabilistic modeling, or symbolic computations, SymPy Stats serves as a versatile and robust library in the Python ecosystem.</p>
+</section>
+<section id="references-further-reading" class="level1">
+<h1><strong>References &amp; Further Reading</strong></h1>
+<p><strong>Official Documentation</strong></p>
+<p>SymPy Stats Documentation: https://docs.sympy.org/latest/modules/stats.html</p>
+<p>SymPy Official Website: https://www.sympy.org</p>
+<p><strong>Tutorials</strong></p>
+<p>Python SymPy Tutorial – Introduction to the Symbolic Computation Library - <a href="https://www.youtube.com/watch?v=HDRJca79Aag&amp;list=PLHwXkLexR9MDJewziHzhHcEKUg4VRwUFq">YouTube</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/agarwalla-chirag\.github\.io\/ES114-Exposition\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
