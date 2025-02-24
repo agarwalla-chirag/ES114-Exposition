@@ -2,9 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/Sympy_Stats_Module.html",
-      "/posts/visualisation.html",
-      "/posts/welcome.html"
+      "/posts/Sympy_Stats_Module.html"
     ]
   }
 ]
