@@ -1,5 +1,5 @@
 ---
-title: Quarto Template
+title: Sympy Stats
 ---
 
-Quarto template Text!
+Visit the Blog secction!
