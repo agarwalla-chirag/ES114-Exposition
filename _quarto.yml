@@ -13,7 +13,6 @@ website:
 
 format:
   html:
-    include-before-body: header.html
     theme:
       light: [litera, styles.scss]
     highlight-style: a11y-dark
