@@ -1,1 +1,1 @@
-# quarto-template
+# Sympy Stats
