@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.41">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-49927ad6ac989989b068a441603fbd97.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8e00f2f28a1266a720913de837032221.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-7cfa380d139a4d61a924487b0af32b39.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -192,6 +192,7 @@ window.Quarto = {
   <li><a href="#transformations-of-random-variables" id="toc-transformations-of-random-variables" class="nav-link" data-scroll-target="#transformations-of-random-variables">Transformations of Random Variables</a></li>
   <li><a href="#sampling-from-distributions" id="toc-sampling-from-distributions" class="nav-link" data-scroll-target="#sampling-from-distributions">Sampling from Distributions</a></li>
   <li><a href="#visualization-of-distributions" id="toc-visualization-of-distributions" class="nav-link" data-scroll-target="#visualization-of-distributions">Visualization of Distributions</a></li>
+  <li><a href="#more-examples" id="toc-more-examples" class="nav-link" data-scroll-target="#more-examples">More Examples</a></li>
   <li><a href="#use-cases" id="toc-use-cases" class="nav-link" data-scroll-target="#use-cases"><strong>Use Cases</strong></a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   <li><a href="#references-further-reading" id="toc-references-further-reading" class="nav-link" data-scroll-target="#references-further-reading"><strong>References &amp; Further Reading</strong></a></li>
@@ -245,7 +246,7 @@ window.Quarto = {
 <p>To use SymPy Stats, ensure that SymPy is installed. It can be installed using:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install sympy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, import the necessary modules:</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy.stats <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Eq, simplify</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -261,7 +262,7 @@ window.Quarto = {
 <p><strong>Standard Normal Distribution</strong></p>
 <p>We define a random variable ‘Norm’ that follows a normal distribution with a mean (𝜇) = 0 and standard deviation σ=1, which makes it a standard normal variable.</p>
 <p>Then, P(Norm&gt;0) calculates the probability that ‘Norm’ is greater than 0. This is the area under the normal curve to the right of 0.</p>
-<div id="cell-8" class="cell" data-outputid="47ed09f7-0164-4c23-9919-a041e02627ed" data-execution_count="3">
+<div id="cell-8" class="cell" data-outputid="47ed09f7-0164-4c23-9919-a041e02627ed" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Norm <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probablity of normal distribution is:"</span>)</span>
@@ -269,7 +270,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>The probablity of normal distribution is:</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="74">
 <p><span class="math inline">\(\displaystyle \frac{1}{2}\)</span></p>
 </div>
 </div>
@@ -277,7 +278,7 @@ window.Quarto = {
 <p>We define a random variable ‘Exp’ that follows an exponential distribution with a rate parameter λ=1, which makes it an exponential variable with mean μ=1.</p>
 <p>For a continuous random variable, calculating P(Exp=1) gives the probability that ‘Exp’ is exactly equal to 1. However, since the exponential distribution is continuous, the probability of ‘Exp’ being exactly 1 is 0.</p>
 <p>On the other hand, P(0&lt;Exp&lt;1) calculates the probability that ‘Exp’ lies between 0 and 1. This is the area under the curve between 0 and 1.</p>
-<div id="cell-10" class="cell" data-outputid="d57bf66f-e9f8-4bf5-b882-7480bf232d06" data-execution_count="4">
+<div id="cell-10" class="cell" data-outputid="d57bf66f-e9f8-4bf5-b882-7480bf232d06" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Exp <span class="op">=</span> Exponential(<span class="st">'Exp'</span>, <span class="dv">1</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability Exp = 1 is:"</span>)</span>
@@ -285,24 +286,24 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>The probability Exp = 1 is:</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="75">
 <p><span class="math inline">\(\displaystyle 0\)</span></p>
 </div>
 </div>
-<div id="cell-11" class="cell" data-outputid="90ce0646-4178-40fe-c88d-abd3c947c7df" data-execution_count="5">
+<div id="cell-11" class="cell" data-outputid="90ce0646-4178-40fe-c88d-abd3c947c7df" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that 0 &lt; Exp &lt; 1 is:"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>P((Exp <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">&amp;</span> (Exp <span class="op">&lt;</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The probability that 0 &lt; Exp &lt; 1 is:</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="76">
 <p><span class="math inline">\(\displaystyle 1 - e^{-1}\)</span></p>
 </div>
 </div>
 <p><strong>Uniform Distribution</strong></p>
 <p>We define a random variable ‘Uni’ that follows a uniform distribution between 0 and 10, meaning it has equal probability across this range.</p>
 <p>Then, P(Uni&lt;5) calculates the probability that ‘Uni’ is less than 5. This probability is proportional to the length of the interval [0,5] relative to the total range [0,10], representing the area under the uniform curve from 0 to 5.</p>
-<div id="cell-13" class="cell" data-outputid="a59e2e65-8df5-49dd-a185-b70c636bd576" data-execution_count="6">
+<div id="cell-13" class="cell" data-outputid="a59e2e65-8df5-49dd-a185-b70c636bd576" data-execution_count="77">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Uni <span class="op">=</span> Uniform(<span class="st">'Uni'</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that Uni &lt; 5 is:"</span>)</span>
@@ -310,14 +311,14 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>The probability that Uni &lt; 5 is:</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="77">
 <p><span class="math inline">\(\displaystyle \frac{1}{2}\)</span></p>
 </div>
 </div>
 <p><strong>Bernoulli Distribution</strong></p>
 <p>We define a random variable ‘Bern’ that follows a Bernoulli distribution with probability p=0.5. It has two outcomes: 1 (success) with probability ‘𝑝’, and 0 (failure) with probability ‘1−p’.</p>
 <p>Then, 𝑃(Eq(Bern,1)) calculates the probability that ‘Bern’ equals 1. This represents the probability of success in a Bernoulli trial.</p>
-<div id="cell-15" class="cell" data-outputid="2c7059ae-567f-41cd-ecbe-4496d8b2fa0c" data-execution_count="7">
+<div id="cell-15" class="cell" data-outputid="2c7059ae-567f-41cd-ecbe-4496d8b2fa0c" data-execution_count="78">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Bern <span class="op">=</span> Bernoulli(<span class="st">'Bern'</span>, <span class="fl">0.5</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that Bern = 1 is:"</span>)</span>
@@ -325,14 +326,14 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>The probability that Bern = 1 is:</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="78">
 <p><span class="math inline">\(\displaystyle 0.5\)</span></p>
 </div>
 </div>
 <p><strong>Binomial Distribution</strong></p>
 <p>We define a random variable ‘Bin’ that follows a Binomial distribution with parameters n=10 and p=0.5, meaning there are 10 independent Bernoulli trials, each with a probability p=0.5 of success.</p>
 <p>Then, P(Eq(Bin,5)) calculates the probability that ‘Bin’ equals 5, which represents the probability of having exactly 5 successes out of the 10 trials and is computed using the Binomial probability mass function.</p>
-<div id="cell-17" class="cell" data-outputid="68f94032-3036-424c-bc14-bf56d8e1b7c2" data-execution_count="8">
+<div id="cell-17" class="cell" data-outputid="68f94032-3036-424c-bc14-bf56d8e1b7c2" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Bin <span class="op">=</span> Binomial(<span class="st">'Bin'</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that Bin = 5 is:"</span>)</span>
@@ -340,7 +341,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>The probability that Bin = 5 is:</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="79">
 <p><span class="math inline">\(\displaystyle 0.24609375\)</span></p>
 </div>
 </div>
@@ -348,7 +349,7 @@ window.Quarto = {
 <p>We define a random variable ‘Poiss’ that follows a Poisson distribution with a mean λ=3.</p>
 <p>Then, P(Eq(Poiss,2)) calculates the probability that ’Poiss’equals 2, which represents the probability of exactly 2 events occurring in the given interval and is computed using the Poisson probability mass function.</p>
 <p>This gives the likelihood of observing exactly 2 events when the average number of events is 3.</p>
-<div id="cell-19" class="cell" data-outputid="e8474360-ebd6-4237-df07-0b6244bfc8cb" data-execution_count="9">
+<div id="cell-19" class="cell" data-outputid="e8474360-ebd6-4237-df07-0b6244bfc8cb" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Poiss <span class="op">=</span> Poisson(<span class="st">'Poiss'</span>, <span class="dv">3</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The probability that Poiss = 2 is:"</span>)</span>
@@ -356,7 +357,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>The probability that Poiss = 2 is:</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="80">
 <p><span class="math inline">\(\displaystyle \frac{9}{2 e^{3}}\)</span></p>
 </div>
 </div>
@@ -368,63 +369,63 @@ window.Quarto = {
 <li><p><strong>Variance</strong>: Variance measures how much the values of a random variable deviate from the mean. A higher variance indicates a wider spread, while a lower variance means the values are closer to the mean.</p></li>
 </ul>
 <p>For a normal distribution, the expectation is the mean (μ), and the variance is the square of the standard deviation (σ²).</p>
-<div id="cell-22" class="cell" data-outputid="f73470af-5304-4d51-9ac4-f5f1b11f4bf7" data-execution_count="10">
+<div id="cell-22" class="cell" data-outputid="f73470af-5304-4d51-9ac4-f5f1b11f4bf7" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of normal distribution is:"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>E(Norm), variance(Norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The expectation and variance of normal distribution is:</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="81">
 <pre><code>(0, 1)</code></pre>
 </div>
 </div>
-<div id="cell-23" class="cell" data-outputid="d1ad970a-4e0c-4db0-9a33-d6b0bc319eb0" data-execution_count="11">
+<div id="cell-23" class="cell" data-outputid="d1ad970a-4e0c-4db0-9a33-d6b0bc319eb0" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of exponential distribution is:"</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>E(Exp), variance(Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The expectation and variance of exponential distribution is:</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="82">
 <pre><code>(1, 1)</code></pre>
 </div>
 </div>
-<div id="cell-24" class="cell" data-outputid="ae8560ff-1e6b-4cef-c8c5-b4e9e641ed5c" data-execution_count="12">
+<div id="cell-24" class="cell" data-outputid="ae8560ff-1e6b-4cef-c8c5-b4e9e641ed5c" data-execution_count="83">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of uniform distribution is:"</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>E(Uni) ,variance(Uni)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The expectation and variance of uniform distribution is:</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="83">
 <pre><code>(5, 25/3)</code></pre>
 </div>
 </div>
-<div id="cell-25" class="cell" data-outputid="f0a7e022-cdf5-432a-dca6-554cb34f457d" data-execution_count="13">
+<div id="cell-25" class="cell" data-outputid="f0a7e022-cdf5-432a-dca6-554cb34f457d" data-execution_count="84">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of Bernoulli distribution is:"</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>E(Bern), variance(Bern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The expectation and variance of Bernoulli distribution is:</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="84">
 <pre><code>(0.500000000000000, 0.250000000000000)</code></pre>
 </div>
 </div>
-<div id="cell-26" class="cell" data-outputid="96e5b2fd-bf58-412b-fea4-7250dce28639" data-execution_count="14">
+<div id="cell-26" class="cell" data-outputid="96e5b2fd-bf58-412b-fea4-7250dce28639" data-execution_count="85">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of Binomial distribution is:"</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>E(Bin), variance(Bin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The expectation and variance of Binomial distribution is:</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="85">
 <pre><code>(5.00000000000000, 2.50000000000000)</code></pre>
 </div>
 </div>
-<div id="cell-27" class="cell" data-outputid="3689aa84-dbc3-4b02-8064-4b1a1ced626a" data-execution_count="15">
+<div id="cell-27" class="cell" data-outputid="3689aa84-dbc3-4b02-8064-4b1a1ced626a" data-execution_count="86">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expectation and variance of Poisson distribution is:"</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>E(Poiss)  , variance(Poiss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The expectation and variance of Poisson distribution is:</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="86">
 <pre><code>(3, 3)</code></pre>
 </div>
 </div>
@@ -439,33 +440,33 @@ window.Quarto = {
 <p>Third Moment (Skewness): Describes the asymmetry of the distribution—whether it leans more to the left or right.</p>
 <p>Fourth Moment (Kurtosis): Indicates the heaviness of the tails compared to a normal distribution, helping assess the likelihood of extreme values.</p>
 <p>Moments offer a more detailed understanding of a distribution’s shape beyond just mean and variance.</p>
-<div id="cell-30" class="cell" data-outputid="93adafe9-9d20-417a-c151-7810056a6b2a" data-execution_count="16">
+<div id="cell-30" class="cell" data-outputid="93adafe9-9d20-417a-c151-7810056a6b2a" data-execution_count="87">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>moment(Norm, <span class="dv">3</span>)  <span class="co"># Third moment of Normal Distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="16">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="87">
 <p><span class="math inline">\(\displaystyle 0\)</span></p>
 </div>
 </div>
-<div id="cell-31" class="cell" data-outputid="8832ec6c-5915-4958-a80c-cc35725ccca9" data-execution_count="17">
+<div id="cell-31" class="cell" data-outputid="8832ec6c-5915-4958-a80c-cc35725ccca9" data-execution_count="88">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>moment(Exp, <span class="dv">4</span>)  <span class="co"># Fourth moment of Exponential Distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="17">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="88">
 <p><span class="math inline">\(\displaystyle 24\)</span></p>
 </div>
 </div>
-<div id="cell-32" class="cell" data-outputid="d20027a9-b71f-4e51-b7da-50f9463a5332" data-execution_count="18">
+<div id="cell-32" class="cell" data-outputid="d20027a9-b71f-4e51-b7da-50f9463a5332" data-execution_count="89">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>moment(Poiss, <span class="dv">2</span>)  <span class="co"># Second moment of Poisson distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="18">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="89">
 <p><span class="math inline">\(\displaystyle 12\)</span></p>
 </div>
 </div>
-<div id="cell-33" class="cell" data-outputid="68b95e25-f836-44db-921f-db94b029bb4c" data-execution_count="19">
+<div id="cell-33" class="cell" data-outputid="68b95e25-f836-44db-921f-db94b029bb4c" data-execution_count="90">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>skewness(Exp)  <span class="co"># Skewness of Exponential Distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="19">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="90">
 <p><span class="math inline">\(\displaystyle 2\)</span></p>
 </div>
 </div>
-<div id="cell-34" class="cell" data-outputid="251adfd0-8ddd-4bcf-d573-707d74ca3739" data-execution_count="20">
+<div id="cell-34" class="cell" data-outputid="251adfd0-8ddd-4bcf-d573-707d74ca3739" data-execution_count="91">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>kurtosis(Exp)  <span class="co"># Kurtosis of Exponential Distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="20">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="91">
 <p><span class="math inline">\(\displaystyle 9\)</span></p>
 </div>
 </div>
@@ -474,23 +475,23 @@ window.Quarto = {
 <h1>Entropy</h1>
 <p>Entropy is a measure of uncertainty or randomness in a probability distribution. In this context, it quantifies the uncertainty associated with the standard normal distribution represented by the variable Norm.</p>
 <p>H(X): This line calls the function H() from sympy.stats, which is used to calculate the entropy of a random variable.</p>
-<div id="cell-37" class="cell" data-outputid="322f39e8-ea35-40bc-a298-615a21b0ffca" data-execution_count="21">
+<div id="cell-37" class="cell" data-outputid="322f39e8-ea35-40bc-a298-615a21b0ffca" data-execution_count="92">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>H(Norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="21">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="92">
 <p><span class="math inline">\(\displaystyle \frac{\log{\left(2 \right)}}{2} + \frac{1}{2} + \frac{\log{\left(\pi \right)}}{2}\)</span></p>
 </div>
 </div>
 <p>This line of code calculates the entropy of an exponential distribution.</p>
-<div id="cell-39" class="cell" data-outputid="d12bc2e0-27a3-4cfd-aa2e-f0b595446d48" data-execution_count="22">
+<div id="cell-39" class="cell" data-outputid="d12bc2e0-27a3-4cfd-aa2e-f0b595446d48" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>H(Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="22">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="93">
 <p><span class="math inline">\(\displaystyle 1\)</span></p>
 </div>
 </div>
 <p>This line of code calculates the entropy of a Bernoulli random variable.</p>
-<div id="cell-41" class="cell" data-outputid="cafedb7c-5519-443a-9d66-cba0d5a0ec23" data-execution_count="23">
+<div id="cell-41" class="cell" data-outputid="cafedb7c-5519-443a-9d66-cba0d5a0ec23" data-execution_count="94">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>H(Bern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="23">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="94">
 <p><span class="math inline">\(\displaystyle 0.693147180559945\)</span></p>
 </div>
 </div>
@@ -498,21 +499,21 @@ window.Quarto = {
 <section id="density" class="level1">
 <h1>Density</h1>
 <p>This is a function from sympy.stats that is used to obtain the probability density function (PDF) of a random variable. The PDF describes the likelihood of a random variable taking on a specific value. this line of code is asking for the mathematical formula that describes the shape of the standard normal distribution</p>
-<div id="cell-44" class="cell" data-outputid="0703d8d8-09ed-4d31-d2c4-42caa7346aea" data-execution_count="24">
+<div id="cell-44" class="cell" data-outputid="0703d8d8-09ed-4d31-d2c4-42caa7346aea" data-execution_count="95">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>density(Norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="24">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="95">
 <p><span class="math inline">\(\displaystyle \operatorname{NormalDistribution}\left(0, 1\right)\)</span></p>
 </div>
 </div>
-<div id="cell-45" class="cell" data-outputid="e7834862-4d40-4bb1-a5ee-d33cdbba14d1" data-execution_count="25">
+<div id="cell-45" class="cell" data-outputid="e7834862-4d40-4bb1-a5ee-d33cdbba14d1" data-execution_count="96">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>density(Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="25">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="96">
 <p><span class="math inline">\(\displaystyle \operatorname{ExponentialDistribution}\left(1\right)\)</span></p>
 </div>
 </div>
-<div id="cell-46" class="cell" data-outputid="cf9422a8-7c1c-4e49-f315-390e62902d2f" data-execution_count="26">
+<div id="cell-46" class="cell" data-outputid="cf9422a8-7c1c-4e49-f315-390e62902d2f" data-execution_count="97">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>density(Poiss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="26">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="97">
 <p><span class="math inline">\(\displaystyle \operatorname{PoissonDistribution}\left(3\right)\)</span></p>
 </div>
 </div>
@@ -520,16 +521,16 @@ window.Quarto = {
 <section id="cumulative-distribution-function" class="level1">
 <h1>Cumulative Distribution Function</h1>
 <p>The cdf(Exp) line is calculating this probability for the exponential distribution represented by Exp. The exponential distribution is often used to model the time until an event occurs.</p>
-<div id="cell-49" class="cell" data-outputid="856bb666-22aa-4799-c8e2-fdbf34be7128" data-execution_count="27">
+<div id="cell-49" class="cell" data-outputid="856bb666-22aa-4799-c8e2-fdbf34be7128" data-execution_count="98">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>cdf(Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="27">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="98">
 <p><span class="math inline">\(\displaystyle \left( z \mapsto \begin{cases} 1 - e^{- z} &amp; \text{for}\: z \geq 0 \\0 &amp; \text{otherwise} \end{cases} \right)\)</span></p>
 </div>
 </div>
 <p>The cdf of Bernoulli Distribution can be shown as:</p>
-<div id="cell-51" class="cell" data-outputid="378f1323-92ea-4d7c-91b5-c4befc462712" data-execution_count="28">
+<div id="cell-51" class="cell" data-outputid="378f1323-92ea-4d7c-91b5-c4befc462712" data-execution_count="99">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>cdf(Bern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="99">
 <pre><code>{0: 0.500000000000000, 1: 1.00000000000000}</code></pre>
 </div>
 </div>
@@ -537,15 +538,15 @@ window.Quarto = {
 <section id="quantile" class="level1">
 <h1>Quantile</h1>
 <p>The code is asking for the value (on the x-axis of the standard normal distribution) below which 95% of the data falls. This is also known as the 95th percentile or 0.95 quantile. Imagine the bell curve of the standard normal distribution – this code finds the point where 95% of the area under the curve is to the left of that point</p>
-<div id="cell-54" class="cell" data-outputid="5f376034-a9d2-4eff-ce39-868caa71b145" data-execution_count="29">
+<div id="cell-54" class="cell" data-outputid="5f376034-a9d2-4eff-ce39-868caa71b145" data-execution_count="100">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>quantile(Norm, <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="29">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="100">
 <p><span class="math inline">\(\displaystyle \left( p \mapsto \sqrt{2} \operatorname{erfinv}{\left(2 p - 1 \right)} \right)\)</span></p>
 </div>
 </div>
-<div id="cell-55" class="cell" data-outputid="6d3b325a-97a6-4e1c-9faf-5f8484596fca" data-execution_count="30">
+<div id="cell-55" class="cell" data-outputid="6d3b325a-97a6-4e1c-9faf-5f8484596fca" data-execution_count="101">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>quantile(Exp, <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="30">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="101">
 <p><span class="math inline">\(\displaystyle \left( p \mapsto - \log{\left(1 - p \right)} \right)\)</span></p>
 </div>
 </div>
@@ -553,40 +554,40 @@ window.Quarto = {
 <section id="conditional-probability" class="level1">
 <h1>Conditional Probability</h1>
 <p>This code snippet calculates the probability that a random variable, represented by Norm, falls within a specific range given that it’s part of a standard normal distribution.</p>
-<div id="cell-58" class="cell" data-outputid="c65b7b03-4900-42fa-a712-351ae1d8f3eb" data-execution_count="31">
+<div id="cell-58" class="cell" data-outputid="c65b7b03-4900-42fa-a712-351ae1d8f3eb" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>P(Norm <span class="op">&gt;</span> <span class="dv">0</span>, Norm <span class="op">&lt;</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="31">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="102">
 <p><span class="math inline">\(\displaystyle - \frac{\sqrt{2} \pi e^{2} \operatorname{erf}{\left(\sqrt{2} \right)}}{- \sqrt{2} \pi e^{2} - \sqrt{2} \pi e^{2} \operatorname{erf}{\left(\sqrt{2} \right)}}\)</span></p>
 </div>
 </div>
 <p>This line calculates the probability that the random variable Exp (which was previously defined as an Exponential distribution) falls between the values of 2 and 5.</p>
-<div id="cell-60" class="cell" data-outputid="efed2f98-e7f0-49ea-b2c5-7775abe7f177" data-execution_count="32">
+<div id="cell-60" class="cell" data-outputid="efed2f98-e7f0-49ea-b2c5-7775abe7f177" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>P(Exp <span class="op">&gt;</span> <span class="dv">2</span>, Exp <span class="op">&lt;</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="32">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="103">
 <p><span class="math inline">\(\displaystyle - \frac{1}{-1 + e^{5}} + \frac{e^{3}}{-1 + e^{5}}\)</span></p>
 </div>
 </div>
 <p>This code calculates the probability that the random variable Bin is greater than 3 and less than 8.</p>
-<div id="cell-62" class="cell" data-outputid="af6f80d3-ef4a-468a-e6ff-ddad124e3528" data-execution_count="33">
+<div id="cell-62" class="cell" data-outputid="af6f80d3-ef4a-468a-e6ff-ddad124e3528" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>P(Bin <span class="op">&gt;</span> <span class="dv">3</span>, Bin <span class="op">&lt;</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="33">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="104">
 <p><span class="math inline">\(\displaystyle 0.818181818181818\)</span></p>
 </div>
 </div>
 <p>This code calculates the probability that the random variable Poiss is greater than 1 and less than 4.</p>
-<div id="cell-64" class="cell" data-outputid="09d0ff13-ae8b-4a1a-b441-b13b3db48e24" data-execution_count="34">
+<div id="cell-64" class="cell" data-outputid="09d0ff13-ae8b-4a1a-b441-b13b3db48e24" data-execution_count="105">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>P(Poiss <span class="op">&gt;</span> <span class="dv">1</span>, Poiss <span class="op">&lt;</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="34">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="105">
 <p><span class="math inline">\(\displaystyle \frac{9}{13}\)</span></p>
 </div>
 </div>
 <p>This code aims to find the likelihood of these two events occurring simultaneously:</p>
 <p>A randomly selected value from a standard normal distribution being greater than 0. A randomly selected value from an exponential distribution being greater than 1.</p>
-<div id="cell-66" class="cell" data-outputid="810da09f-b3be-4c99-fa6f-2f5221104f36" data-execution_count="35">
+<div id="cell-66" class="cell" data-outputid="810da09f-b3be-4c99-fa6f-2f5221104f36" data-execution_count="106">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>P(Norm <span class="op">&gt;</span> <span class="dv">0</span>, Exp <span class="op">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="35">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="106">
 <p><span class="math inline">\(\displaystyle \frac{1}{2}\)</span></p>
 </div>
 </div>
@@ -594,21 +595,21 @@ window.Quarto = {
 <section id="independence-and-dependence-of-random-variables" class="level1">
 <h1>Independence and Dependence of Random Variables</h1>
 <p>If the function returns True, it indicates that the variables are considered independent, meaning their outcomes don’t affect each other. If it returns False, it suggests there might be some dependence or relationship between the variables.</p>
-<div id="cell-69" class="cell" data-outputid="8b051ea3-8e6a-483e-9376-018dd2df7ee6" data-execution_count="36">
+<div id="cell-69" class="cell" data-outputid="8b051ea3-8e6a-483e-9376-018dd2df7ee6" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>independent(Norm, Exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="107">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-70" class="cell" data-outputid="47fc37c4-53ba-46dd-9797-30507f0038e6" data-execution_count="37">
+<div id="cell-70" class="cell" data-outputid="47fc37c4-53ba-46dd-9797-30507f0038e6" data-execution_count="108">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>independent(Bern, Bin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="108">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-71" class="cell" data-outputid="24676ae0-5502-4c25-97d0-fea6e62a09e7" data-execution_count="38">
+<div id="cell-71" class="cell" data-outputid="24676ae0-5502-4c25-97d0-fea6e62a09e7" data-execution_count="109">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>dependent(Bern, Poiss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="109">
 <pre><code>False</code></pre>
 </div>
 </div>
@@ -618,7 +619,7 @@ window.Quarto = {
 <p><strong>Covariance</strong></p>
 <p>Covariance measures how two random variables change together. It is calculated as:</p>
 <p>Cov(𝑋,𝑌)=𝐸[(𝑋−𝐸[𝑋])(𝑌−𝐸[𝑌])]</p>
-<div id="cell-75" class="cell" data-outputid="d4f17b9b-af02-4db1-8e60-19b91f1e4057" data-execution_count="39">
+<div id="cell-75" class="cell" data-outputid="d4f17b9b-af02-4db1-8e60-19b91f1e4057" data-execution_count="110">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>Norm_1 <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)  <span class="co"># Normal distribution with mean=0, std=1</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>Norm_2 <span class="op">=</span> Normal(<span class="st">'Exp'</span>, <span class="dv">0</span>, <span class="dv">2</span>)  <span class="co"># Normal distribution with mean=0, std=2</span></span>
@@ -633,7 +634,7 @@ window.Quarto = {
 <p><strong>Correlation</strong></p>
 <p>Correlation normalizes covariance by the standard deviations of the variables, giving a value between -1 and 1:</p>
 <p>Corr(𝑋,𝑌)=Cov(𝑋,𝑌)/(𝜎𝑋𝜎𝑌)</p>
-<div id="cell-78" class="cell" data-outputid="b5bf15b4-6f6c-4af6-d0d5-a29dd84d411a" data-execution_count="40">
+<div id="cell-78" class="cell" data-outputid="b5bf15b4-6f6c-4af6-d0d5-a29dd84d411a" data-execution_count="111">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>Norm_1 <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)  <span class="co"># Normal distribution with mean=0, std=1</span></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>Norm_2 <span class="op">=</span> Normal(<span class="st">'Exp'</span>, <span class="dv">0</span>, <span class="dv">2</span>)  <span class="co"># Normal distribution with mean=0, std=2</span></span>
@@ -647,7 +648,7 @@ window.Quarto = {
 </div>
 <p><strong>Note:</strong> 1. If X and Y are independent, covariance(X, Y) will return 0. 2. correlation(X, Y) normalizes the covariance to get a value between -1 and 1.</p>
 <p><strong>Covariance between Binomial and Poisson</strong></p>
-<div id="cell-81" class="cell" data-outputid="041179ca-df3f-405b-c699-22e3d7a29ae6" data-execution_count="41">
+<div id="cell-81" class="cell" data-outputid="041179ca-df3f-405b-c699-22e3d7a29ae6" data-execution_count="112">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>Bin <span class="op">=</span> Binomial(<span class="st">'Bin'</span>, n<span class="op">=</span><span class="dv">10</span>, p<span class="op">=</span><span class="fl">0.5</span>)  <span class="co"># Binomial(n=10, p=0.5)</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>Poiss <span class="op">=</span> Poisson(<span class="st">'Poiss'</span>, <span class="dv">3</span>)         <span class="co"># Poisson(λ=3)</span></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -668,7 +669,7 @@ window.Quarto = {
 <p>If X ~ N(0,1) (Standard Normal), and we define Y=2X+3, then:</p>
 <p>E[Y] = E[2X+3] = 2 E[X] + 3</p>
 <p>Var(Y) = Var(2X+3) = 2*2 Var(X) = 4</p>
-<div id="cell-85" class="cell" data-outputid="90cabefb-38e6-4e22-874a-6c378970a073" data-execution_count="42">
+<div id="cell-85" class="cell" data-outputid="90cabefb-38e6-4e22-874a-6c378970a073" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Norm <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>Transformed_var <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> Norm <span class="op">+</span> <span class="dv">3</span></span>
@@ -687,7 +688,7 @@ window.Quarto = {
 Var[Transformed_var]: 4
 Density Function:</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="42">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="113">
 <p><span class="math inline">\(\displaystyle \frac{\sqrt{2} e^{- \frac{\left(y - 3\right)^{2}}{8}}}{4 \sqrt{\pi}}\)</span></p>
 </div>
 </div>
@@ -702,7 +703,7 @@ Density Function:</code></pre>
 <p>If we sample a large number of values, we can plot a histogram and compare it with the expected probability distribution.</p>
 <p>Example: Sampling 1000 values from N(0,1) should give a bell-shaped curve.</p>
 <p><strong>Sampling from a Standard Normal Distribution</strong></p>
-<div id="cell-89" class="cell" data-outputid="59fed4b9-30c7-46f6-8f3a-fcd80e811af3" data-execution_count="43">
+<div id="cell-89" class="cell" data-outputid="59fed4b9-30c7-46f6-8f3a-fcd80e811af3" data-execution_count="114">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Normal distribution X ~ N(0,1)</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>Norm <span class="op">=</span> Normal(<span class="st">'Norm'</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -712,37 +713,37 @@ Density Function:</code></pre>
 <span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [<span class="bu">round</span>(sample(Norm),<span class="dv">2</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>)]</span>
 <span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Multiple Samples:"</span>, samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Single Sample: -0.72
-Multiple Samples: [np.float64(1.07), np.float64(0.26), np.float64(-0.16), np.float64(-0.05), np.float64(-0.22), np.float64(1.27), np.float64(-0.6), np.float64(-1.35), np.float64(-0.5), np.float64(-1.02), np.float64(-0.08), np.float64(-1.2), np.float64(-0.72), np.float64(-0.2), np.float64(0.27), np.float64(0.01), np.float64(0.33), np.float64(-1.35), np.float64(-0.22), np.float64(1.21)]</code></pre>
+<pre><code>Single Sample: -1.53
+Multiple Samples: [np.float64(-0.2), np.float64(0.22), np.float64(-0.55), np.float64(-1.75), np.float64(-1.59), np.float64(1.27), np.float64(-0.05), np.float64(0.92), np.float64(2.54), np.float64(-0.36), np.float64(-0.09), np.float64(0.19), np.float64(2.09), np.float64(-0.01), np.float64(-0.86), np.float64(0.83), np.float64(0.47), np.float64(-0.68), np.float64(0.72), np.float64(-0.84)]</code></pre>
 </div>
 </div>
 <p><strong>Sampling from a Binomial Distribution</strong></p>
-<div id="cell-91" class="cell" data-outputid="5164cc69-4f95-4ce8-ff6b-352d461c5f09" data-execution_count="44">
+<div id="cell-91" class="cell" data-outputid="5164cc69-4f95-4ce8-ff6b-352d461c5f09" data-execution_count="115">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># X ~ Bin(10, 0.5)</span></span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span> <span class="op">=</span> Binomial(<span class="st">'Bin'</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [sample(<span class="bu">bin</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>)]</span>
 <span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Binomial Samples:"</span>, samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Binomial Samples: [np.int64(4), np.int64(5), np.int64(5), np.int64(4), np.int64(5), np.int64(4), np.int64(5), np.int64(3), np.int64(2), np.int64(7), np.int64(8), np.int64(5), np.int64(5), np.int64(4), np.int64(7), np.int64(2), np.int64(6), np.int64(3), np.int64(7), np.int64(6)]</code></pre>
+<pre><code>Binomial Samples: [np.int64(4), np.int64(3), np.int64(7), np.int64(5), np.int64(6), np.int64(8), np.int64(6), np.int64(5), np.int64(4), np.int64(4), np.int64(6), np.int64(5), np.int64(7), np.int64(7), np.int64(3), np.int64(3), np.int64(6), np.int64(6), np.int64(2), np.int64(5)]</code></pre>
 </div>
 </div>
 <p><strong>Sampling from a Poisson Distribution</strong></p>
-<div id="cell-93" class="cell" data-outputid="ac2ed500-dacb-464b-c58c-1702c860f3d4" data-execution_count="45">
+<div id="cell-93" class="cell" data-outputid="ac2ed500-dacb-464b-c58c-1702c860f3d4" data-execution_count="116">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Poisson distribution X ~ Poisson(3)</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>Poiss <span class="op">=</span> Poisson(<span class="st">'Poiss'</span>, <span class="dv">3</span>)</span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [sample(Poiss) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>)]</span>
 <span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Poisson Samples:"</span>, samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Poisson Samples: [np.int64(1), np.int64(4), np.int64(2), np.int64(2), np.int64(2), np.int64(2), np.int64(4), np.int64(3), np.int64(1), np.int64(3), np.int64(3), np.int64(0), np.int64(2), np.int64(3), np.int64(2), np.int64(3), np.int64(4), np.int64(2), np.int64(2), np.int64(6)]</code></pre>
+<pre><code>Poisson Samples: [np.int64(4), np.int64(2), np.int64(1), np.int64(3), np.int64(3), np.int64(4), np.int64(6), np.int64(5), np.int64(1), np.int64(4), np.int64(5), np.int64(3), np.int64(3), np.int64(0), np.int64(3), np.int64(3), np.int64(5), np.int64(4), np.int64(3), np.int64(2)]</code></pre>
 </div>
 </div>
 </section>
 <section id="visualization-of-distributions" class="level1">
 <h1>Visualization of Distributions</h1>
 <p><strong>Normal Distribution (N(0,1))</strong></p>
-<div id="cell-96" class="cell" data-outputid="b8b8552d-7a5c-45f6-904c-c172bc86c33c" data-execution_count="46">
+<div id="cell-96" class="cell" data-outputid="b8b8552d-7a5c-45f6-904c-c172bc86c33c" data-execution_count="117">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Normal distribution N(0,1)</span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>X_normal <span class="op">=</span> Normal(<span class="st">'X'</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
@@ -773,7 +774,7 @@ Multiple Samples: [np.float64(1.07), np.float64(0.26), np.float64(-0.16), np.flo
 <li><p>You can see a bell-shaped curve, which is the characteristic of the normal distribution.</p></li>
 </ul>
 <p><strong>Bernoulli Distribution (Bernoulli(0.7))</strong></p>
-<div id="cell-99" class="cell" data-outputid="5d922ffe-a0d3-4e56-9739-41e305caa411" data-execution_count="47">
+<div id="cell-99" class="cell" data-outputid="5d922ffe-a0d3-4e56-9739-41e305caa411" data-execution_count="118">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bernoulli distribution with p = 0.7</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>X_bernoulli <span class="op">=</span> Bernoulli(<span class="st">'X'</span>, <span class="fl">0.7</span>)</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -795,7 +796,7 @@ Multiple Samples: [np.float64(1.07), np.float64(0.26), np.float64(-0.16), np.flo
 </div>
 </div>
 <p><strong>Binomial Distribution (Binomial(10, 0.5))</strong></p>
-<div id="cell-101" class="cell" data-outputid="b9bd22c7-7f24-4386-e46f-70a3ca1abf33" data-execution_count="48">
+<div id="cell-101" class="cell" data-outputid="b9bd22c7-7f24-4386-e46f-70a3ca1abf33" data-execution_count="119">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Binomial distribution Binomial(10, 0.5)</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>X_binomial <span class="op">=</span> Binomial(<span class="st">'X'</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -818,7 +819,7 @@ Multiple Samples: [np.float64(1.07), np.float64(0.26), np.float64(-0.16), np.flo
 </div>
 </div>
 <p><strong>Poisson Distribution (Poisson(3))</strong></p>
-<div id="cell-103" class="cell" data-outputid="c178c524-c8af-4cf4-e9a0-dc4feefaf3c0">
+<div id="cell-103" class="cell" data-outputid="c178c524-c8af-4cf4-e9a0-dc4feefaf3c0" data-execution_count="120">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>X_poisson <span class="op">=</span> Poisson(<span class="st">'X'</span>, <span class="dv">3</span>)</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>x_poisson <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">15</span>)</span>
@@ -834,6 +835,128 @@ Multiple Samples: [np.float64(1.07), np.float64(0.26), np.float64(-0.16), np.flo
 <div>
 <figure class="figure">
 <p><img src="Sympy_Stats_Module_files/figure-html/cell-49-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="more-examples" class="level1">
+<h1>More Examples</h1>
+<p><strong>Example 1: Coin Toss Probability</strong> A fair coin flip is modeled using a <strong>Bernoulli random variable</strong>, where:<br>
+- <strong>Heads (1) occurs with probability 0.5</strong><br>
+- <strong>Tails (0) occurs with probability 0.5</strong></p>
+<p>We use SymPy Stats to define the random variable and calculate the probability of each outcome.</p>
+<div id="cell-106" class="cell" data-execution_count="121">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a fair coin toss (Heads = 1, Tails = 0)</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>Coin <span class="op">=</span> Bernoulli(<span class="st">'Coin'</span>, <span class="fl">0.5</span>)</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Probability of Heads:"</span>, P(Eq(Coin, <span class="dv">1</span>)))</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Probability of Tails:"</span>, P(Eq(Coin, <span class="dv">0</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Probability of Heads: 0.500000000000000
+Probability of Tails: 0.500000000000000</code></pre>
+</div>
+</div>
+<p><strong>Example 2: Rolling a Dice Probability</strong></p>
+<p>A fair <strong>6-sided die</strong> is modeled using a <strong>Discrete Uniform distribution</strong>.</p>
+<p>We calculate the probability of rolling <strong>3 or higher</strong>, which means:</p>
+<p>P(Die &gt;= 3) = P(3) + P(4) + P(5) + P(6)</p>
+<p>This example demonstrates symbolic probability calculations in SymPy Stats.</p>
+<div id="cell-108" class="cell" data-execution_count="122">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a fair 6-sided die</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>Die <span class="op">=</span> Die(<span class="st">'Die'</span>, <span class="dv">6</span>)</span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Probability of rolling 3 or higher:"</span>, P(Die <span class="op">&gt;=</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Probability of rolling 3 or higher: 2/3</code></pre>
+</div>
+</div>
+<p><strong>Example 3: Medical Test Accuracy</strong></p>
+<p><strong>Problem Statement</strong> A disease affects <strong>1%</strong> of a population. A test for the disease:<br>
+- Correctly detects the disease (True Positive) <strong>95% of the time</strong><br>
+- Incorrectly flags a healthy person as positive (False Positive) <strong>5% of the time</strong></p>
+<p>We use <strong>Bayes’ Theorem</strong> to calculate the probability that a person <strong>actually has the disease given a positive test result</strong>.</p>
+<p><strong>Bayes’ Theorem Explanation</strong></p>
+<p>Bayes’ Theorem is used to update probabilities based on new evidence. It calculates the probability of an event (having the disease) given that another event has occurred (testing positive).</p>
+<div id="cell-110" class="cell" data-execution_count="123">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define random variable for having the disease (1: Has disease, 0: No disease)</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> Bernoulli(<span class="st">'D'</span>, <span class="fl">0.01</span>)  <span class="co"># Prior probability of disease (1%)</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define test results based on whether a person has the disease</span></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>T_given_D <span class="op">=</span> <span class="fl">0.95</span>  <span class="co"># Sensitivity: P(T = 1 | D = 1) -&gt; True Positive Rate</span></span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>T_given_not_D <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># False Positive Rate: P(T = 1 | D = 0)</span></span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Total probability of testing positive</span></span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>P_T <span class="op">=</span> T_given_D <span class="op">*</span> P(Eq(D, <span class="dv">1</span>)) <span class="op">+</span> T_given_not_D <span class="op">*</span> P(Eq(D, <span class="dv">0</span>))</span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute P(D=1 | T=1) using Bayes' Theorem</span></span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>P_D_given_T <span class="op">=</span> (T_given_D <span class="op">*</span> P(Eq(D, <span class="dv">1</span>))) <span class="op">/</span> P_T</span>
+<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Probability of actually having the disease given a positive test:"</span>, P_D_given_T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Probability of actually having the disease given a positive test: 0.161016949152542</code></pre>
+</div>
+</div>
+<p><strong>Example 4: Grading System Using a Normal Distribution</strong></p>
+<p>A professor assigns grades based on a normal distribution of student scores, with: - Mean = 70 - Standard deviation = 10</p>
+<p>The grading scale is as follows: - A: 85 and above - B: 70 to 84 - C: 50 to 69 - F: Below 50</p>
+<p>We will calculate the no of students getting a particular grade assuming a class size of 100.</p>
+<div id="cell-112" class="cell" data-execution_count="124">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> <span class="dv">70</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>std_dev <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>total_students <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the normal distribution</span></span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> Normal(<span class="st">'G'</span>, mean, std_dev)</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the fraction and number of students in each grade category</span></span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>P_A <span class="op">=</span> norm.sf(<span class="dv">85</span>, mean, std_dev)   <span class="co"># P(X &gt;= 85)</span></span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>P_B <span class="op">=</span> norm.cdf(<span class="dv">84</span>, mean, std_dev) <span class="op">-</span> norm.cdf(<span class="dv">70</span>, mean, std_dev)  <span class="co"># P(70 ≤ X ≤ 84)</span></span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>P_C <span class="op">=</span> norm.cdf(<span class="dv">69</span>, mean, std_dev) <span class="op">-</span> norm.cdf(<span class="dv">50</span>, mean, std_dev)  <span class="co"># P(50 ≤ X ≤ 69)</span></span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>P_F <span class="op">=</span> norm.cdf(<span class="dv">50</span>, mean, std_dev)  <span class="co"># P(X &lt; 50)</span></span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a>students_A <span class="op">=</span> <span class="bu">int</span>(P_A <span class="op">*</span> total_students)</span>
+<span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a>students_B <span class="op">=</span> <span class="bu">int</span>(P_B <span class="op">*</span> total_students)</span>
+<span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a>students_C <span class="op">=</span> <span class="bu">int</span>(P_C <span class="op">*</span> total_students)</span>
+<span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a>students_F <span class="op">=</span> <span class="bu">int</span>(P_F <span class="op">*</span> total_students)</span>
+<span id="cb86-19"><a href="#cb86-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-20"><a href="#cb86-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-21"><a href="#cb86-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of students getting an A:"</span>, students_A)</span>
+<span id="cb86-22"><a href="#cb86-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of students getting a B:"</span>, students_B)</span>
+<span id="cb86-23"><a href="#cb86-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of students getting a C:"</span>, students_C)</span>
+<span id="cb86-24"><a href="#cb86-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of students getting an F:"</span>, students_F)</span>
+<span id="cb86-25"><a href="#cb86-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-26"><a href="#cb86-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-27"><a href="#cb86-27" aria-hidden="true" tabindex="-1"></a><span class="co">#  Visualization </span></span>
+<span id="cb86-28"><a href="#cb86-28" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">30</span>, <span class="dv">110</span>, <span class="dv">500</span>)</span>
+<span id="cb86-29"><a href="#cb86-29" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> norm.pdf(x, mean, std_dev)</span>
+<span id="cb86-30"><a href="#cb86-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-31"><a href="#cb86-31" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb86-32"><a href="#cb86-32" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">"Normal Distribution (μ=70, σ=10)"</span>)</span>
+<span id="cb86-33"><a href="#cb86-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-34"><a href="#cb86-34" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y, where<span class="op">=</span>(x <span class="op">&gt;=</span> <span class="dv">85</span>), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, label<span class="op">=</span><span class="ss">f"A (85+) - </span><span class="sc">{</span>students_A<span class="sc">}</span><span class="ss"> students"</span>)</span>
+<span id="cb86-35"><a href="#cb86-35" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y, where<span class="op">=</span>((x <span class="op">&gt;=</span> <span class="dv">70</span>) <span class="op">&amp;</span> (x <span class="op">&lt;</span> <span class="dv">85</span>)), color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, label<span class="op">=</span><span class="ss">f"B (70-84) - </span><span class="sc">{</span>students_B<span class="sc">}</span><span class="ss"> students"</span>)</span>
+<span id="cb86-36"><a href="#cb86-36" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y, where<span class="op">=</span>((x <span class="op">&gt;=</span> <span class="dv">50</span>) <span class="op">&amp;</span> (x <span class="op">&lt;</span> <span class="dv">70</span>)), color<span class="op">=</span><span class="st">'orange'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, label<span class="op">=</span><span class="ss">f"C (50-69) - </span><span class="sc">{</span>students_C<span class="sc">}</span><span class="ss"> students"</span>)</span>
+<span id="cb86-37"><a href="#cb86-37" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, y, where<span class="op">=</span>(x <span class="op">&lt;</span> <span class="dv">50</span>), color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, label<span class="op">=</span><span class="ss">f"F (&lt;50) - </span><span class="sc">{</span>students_F<span class="sc">}</span><span class="ss"> students"</span>)</span>
+<span id="cb86-38"><a href="#cb86-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-39"><a href="#cb86-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-40"><a href="#cb86-40" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Score"</span>)</span>
+<span id="cb86-41"><a href="#cb86-41" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Probability Density"</span>)</span>
+<span id="cb86-42"><a href="#cb86-42" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Grading Distribution (Normal Curve)"</span>)</span>
+<span id="cb86-43"><a href="#cb86-43" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper right"</span>, fontsize<span class="op">=</span><span class="dv">10</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb86-44"><a href="#cb86-44" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb86-45"><a href="#cb86-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of students getting an A: 6
+Number of students getting a B: 41
+Number of students getting a C: 43
+Number of students getting an F: 2</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Sympy_Stats_Module_files/figure-html/cell-53-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
