@@ -10,6 +10,6 @@ This site is dedicated to exploring **SymPy Stats**, a powerful symbolic statist
 
 Check out my latest blog post on SymPy Stats:
 
-[![Read the Blog](./blog.qmd)](./blog.qmd){.btn .btn-primary}
+[Read the Blog](./blog.qmd){.btn .btn-primary}
 
 Stay tuned for more updates, and feel free to explore the content!
