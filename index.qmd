@@ -1,5 +1,15 @@
 ---
-title: Sympy Stats
+title: SymPy Stats
 ---
 
-Visit the Blog section!
+## Welcome to My Quarto Website!
+
+This site is dedicated to exploring **SymPy Stats**, a powerful symbolic statistics module in Python. Here, you'll find tutorials, explanations, and examples to help you understand and apply statistical concepts using SymPy.
+
+### Explore the Blog
+
+Check out my latest blog post on SymPy Stats:
+
+[![Read the Blog](./blog.qmd)](./blog.qmd){.btn .btn-primary}
+
+Stay tuned for more updates, and feel free to explore the content!
