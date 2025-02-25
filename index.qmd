@@ -2,4 +2,4 @@
 title: Sympy Stats
 ---
 
-Visit the Blog secction!
+Visit the Blog section!
